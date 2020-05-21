@@ -1,13 +1,11 @@
 using System;
 using Xunit;
 
-namespace GradeBook.Tests
-{
-    public class BookTests
-    {
+namespace GradeBook.Tests {
+    public class BookTests {
+        // Prove a Fact so use statement of Fact to identify Unit Tests
         [Fact]
-        public void Test1()
-        {
+        public void BookCalculatesStatistics() {
             // Always asks if the parameters passed in is legal or not
             // Arrange Section: Put together test data nad arrange object and values to be used
             var book = new Book("");

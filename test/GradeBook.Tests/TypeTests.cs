@@ -92,8 +92,6 @@ namespace GradeBook.Tests {
         /**
          * Value Types: Integers, Floating Point Numbers, DateTime and Booleans etc.
          */
-
-         //====================================== Pass By Reference ======================================
         [Fact]
          public void Test1() {
             var x = GetInt();
@@ -116,5 +114,21 @@ namespace GradeBook.Tests {
         private int GetInt() {
             return 3;
         }
+
+        //====================================== Strings are reference type ======================================
+        // Strings are immutable
+        [Fact] 
+        public void StringsBehaveLikeValueTypes() {
+            string name = "Jack";
+            var upper = MakeUppercase(name);
+
+            Assert.Equal("Jack", name);
+            Assert.Equal("JACK", upper);
+                
+        } 
+        
+        private string MakeUppercase(string parameter) {
+            return parameter.ToUpper();
+        }                    
     }
 }

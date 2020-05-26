@@ -42,9 +42,36 @@ namespace GradeBook
 
         //     Console.WriteLine($"Average result is {avgResult:N2}");
             Book book = new Book("FirstBook");
-            book.AddGrade(89.1);
-            book.AddGrade(90.1);
-            book.AddGrade(100.0);
+
+            var done = false;
+            do {
+                Console.WriteLine("Enter a grade or 'q' to quit");
+                var input = Console.ReadLine();
+                if (input == "q") {
+                    done = true;
+                    break;
+                }
+                try {
+                    var grade = double.Parse(input);
+                    book.AddGrade(grade);
+                } catch (ArgumentException ex) {
+                    // Make sure to catch the specific exception instead of general Exception
+                    Console.WriteLine(ex.Message);
+                    // re-throw the exception and force it to be caught/program to crash
+                    // throw;
+                } catch (FormatException ex) {
+                    Console.WriteLine(ex.Message);
+                } finally {
+                    Console.WriteLine("");
+                }
+                
+                
+            } while(!done);
+            
+
+            // book.AddGrade(89.1);
+            // book.AddGrade(90.1);
+            // book.AddGrade(100.0);
             book.printGrade();
             book.showStatistics();
             // Console.WriteLine($"Highest grade is {book.getHighestGrade():N2}");

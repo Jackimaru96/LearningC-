@@ -7,9 +7,32 @@ namespace GradeBook
     {
         private List<double> grades; 
         // Public member always have uppercase name
-        public string Name;
+        // public string Name;
+        // To define Property, usually has a private field first
+        private string name;
         private char letterGrade;
 
+        // Defining Properties instead of Fields
+        // It encapsulates state and stores data for an object; but different syntax and powerful features
+        // private to protect the state, control access to the field
+
+        // Access modifier
+        public string Name {
+            // read the Name property
+            get {
+                return name;
+            }
+
+            // set the Name property
+            set {
+                if(!String.IsNullOrEmpty(value)) {
+                    name = value;
+                }
+            }
+        }
+
+
+        // Constructor
         public Book(string name) {
             grades = new List<double>();
             Name = name;

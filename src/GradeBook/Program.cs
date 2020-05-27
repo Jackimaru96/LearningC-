@@ -73,6 +73,7 @@ namespace GradeBook
             // book.AddGrade(90.1);
             // book.AddGrade(100.0);
             book.printGrade();
+            Console.WriteLine($"For the book named {book.Name}");
             book.showStatistics();
             // Console.WriteLine($"Highest grade is {book.getHighestGrade():N2}");
             // Console.WriteLine($"Lowest grade is {book.getLowestGrade():N2}");

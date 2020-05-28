@@ -7,41 +7,12 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-        //     double x = 3.1;
-        //     double y = 4.6;
-        //     // Implicit typing
-        //     var z = x + y;
-        //     // Method 1: String concatenation
-        //     Console.WriteLine("The result is " + z);
-
-        //     // Method 2: String interpolation
-        //     //Console.WriteLine($"Hello {args[0]}!");
-
-        //     // Similar to C, need to declare the size of the array
-        //     double[] numbers = new[] {12.7, 10.3, 6.11, 4.1};
-
-        //     var result = 0.0;
-        //    foreach(double number in numbers) {
-        //        result += number;
-        //    }
-        //     Console.WriteLine("Result from adding in array: " + result);
-
-        //     /**
-        //      * Using a List to enumerate through data
-        //      */
-        //     List<double> grades = new List<double>(); 
-        //     grades.Add(15.1);
-        //     grades.Add(1.1);
-
-        //     var gradeResult = 0.0;
-        //     foreach(var grade in grades) {
-        //         gradeResult += grade;
-        //     }
-
-        //     var avgResult = gradeResult/grades.Count;
-
-        //     Console.WriteLine($"Average result is {avgResult:N2}");
             Book book = new Book("FirstBook");
+            book.GradeAdded += OnGradeAdded;
+            // If Book class expose the GradeAdded member as a delegate, can make direct assignment such as
+            // GradeAdded = null;
+            // But cannot directly assign to an event field
+
 
             var done = false;
             do {
@@ -78,6 +49,11 @@ namespace GradeBook
             // Console.WriteLine($"Highest grade is {book.getHighestGrade():N2}");
             // Console.WriteLine($"Lowest grade is {book.getLowestGrade():N2}");
             // Console.WriteLine($"Average grade is {book.getAverage():N2}");
+        }
+
+        static void OnGradeAdded(object sender, EventArgs e)
+        {
+            Console.WriteLine("A grade was added");
         }
     }
 }

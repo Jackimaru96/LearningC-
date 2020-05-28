@@ -79,16 +79,6 @@ namespace GradeBook
             }
         }
 
-        public void AddGrade(double grade) {
-            if(grade <= 100 && grade >= 0) {
-                this.grades.Add(grade);
-            }
-            else {
-                // Exception thrown
-                throw new ArgumentException($"Invalid {nameof(grade)}");
-            }
-        }
-
         public void printGrade() {
             grades.ForEach(grade => {
                 Console.WriteLine($"Current grade is {grade}");
@@ -146,5 +136,29 @@ namespace GradeBook
             return totalGrade;
         }
 
+        /**
+         * Delegate and Events
+         */
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+        public event GradeAddedDelegate GradeAdded;
+
+        public void AddGrade(double grade)
+        {
+            if (grade <= 100 && grade >= 0)
+            {
+                this.grades.Add(grade);
+                if (GradeAdded != null)
+                {
+                    // Only invoke this Delegate if GradeAdded is not null
+                    GradeAdded(this, new EventArgs());
+                }
+            }
+            else
+            {
+                // Exception thrown
+                throw new ArgumentException($"Invalid {nameof(grade)}");
+            }
+        }
     }
 }

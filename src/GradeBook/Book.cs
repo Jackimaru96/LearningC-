@@ -24,6 +24,7 @@ namespace GradeBook
             }
 
             // set the Name property
+            // can be private to not allow to be set outside of this class
             set {
                 if(!String.IsNullOrEmpty(value)) {
                     name = value;

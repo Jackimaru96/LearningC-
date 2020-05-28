@@ -129,6 +129,44 @@ namespace GradeBook.Tests {
         
         private string MakeUppercase(string parameter) {
             return parameter.ToUpper();
-        }                    
+        }
+
+
+        /**
+         * Delegates
+         */
+        // Example of Delegate
+        public delegate string WriteLogDelegate(string logMessage);
+        int count = 0;
+
+        [Fact]
+        public void WriteLogDelegateCanPointToMethod()
+        {
+            WriteLogDelegate log;
+            log = ReturnMessage;
+
+            var result = log("Hello");
+            // count = 1
+            Assert.Equal("Hello", result);
+
+            log += ReturnMessage;
+            log += IncrementCount;
+            
+            // ReturnMessage will execute twice and IncrementCount once; count += 3; resulting count is 4
+            result = log("Bye");
+            Assert.Equal(4, count);
+        }
+
+       string IncrementCount(string message)
+        {
+            count++;
+            return message.ToLower();
+        }
+
+        string ReturnMessage(string message)
+        {
+            count++;
+            return message;
+        }
     }
 }
